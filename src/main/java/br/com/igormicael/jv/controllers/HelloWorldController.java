@@ -1,8 +1,10 @@
 package br.com.igormicael.jv.controllers;
 
-import javax.enterprise.inject.Model;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
-@Model
+@ManagedBean
+@RequestScoped
 public class HelloWorldController
 {
 
