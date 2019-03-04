@@ -2,52 +2,132 @@
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>JSF tutorial</title>
+</h:head>
+
 <h:body>
-	<h:panelGrid id="telaToda" columns="2" >
-	 
-		<h:panelGrid id="panelJogadores" 
-			columns="1" border="1" >
-			
-		<h:panelGrid border="0" >
-			<h:outputLabel value = "Nome dos jogadores: " />
-		</h:panelGrid>
-			
-		<h:panelGrid columns="2" border="0">
-			<h:outputLabel value = "O" />
-			<h:inputText  />
-			
-			<h:outputLabel value = "X" />
-			<h:inputText  />
-		</h:panelGrid>
-		
-		<h:panelGrid columns="1">
-			<input type = "submit" value = "Novo Jogo" />
-		</h:panelGrid>
-			
-		</h:panelGrid>
-		<h:panelGrid id="panelJogo" columns="1" border="1">
-			<h:panelGrid columns="3" border="1">
-				<h:outputLabel value = "O jogador ganhou !!" />
+	<h:form>
+		<h:panelGrid id="telaToda" columns="2">
+			<h:panelGrid id="panelJogadores" columns="1" border="1">
+
+				<h:panelGrid border="0">
+					<h:outputLabel value="Nome dos jogadores: " />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" border="0">
+					<h:outputLabel value="O" />
+					<h:inputText id="jogadorUm" value="#{jogoVelhaController.jogadorO}" />
+
+					<h:outputLabel value="X" />
+					<h:inputText id="jogadorDois" value="#{jogoVelhaController.jogadorX}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1">
+					<h:commandButton value="Iniciar Jogo">
+						<f:ajax event="click"
+							listener="#{jogoVelhaController.iniciarJogo()}" execute="panelJogadores"
+							render="telaToda" />
+					</h:commandButton>
+				</h:panelGrid>
+
 			</h:panelGrid>
-			<h:panelGrid columns="3" border="1">
-				<h:outputLabel  value = "" />
-				<h:outputLabel value = "" />
-				<h:outputLabel value = "" />
+
+			<h:panelGrid id="panelJogo" columns="1" border="1">
+				<h:panelGrid columns="1" border="0">
+					<h:panelGrid columns="1" rendered="true">
+						<h:outputLabel value="#{jogoVelhaController.mensagem}" />
+					</h:panelGrid>
+					<h:panelGrid columns="3">
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px; ">
+							<h:commandButton value="#{jogoVelhaController.jogadas[0]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(0)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(0)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;">
+							<h:commandButton value="#{jogoVelhaController.jogadas[1]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(1)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(1)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;">
+							<h:commandButton value="#{jogoVelhaController.jogadas[2]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(2)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(2)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+					</h:panelGrid>
+					<h:panelGrid columns="3">
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;">
+							<h:commandButton value="#{jogoVelhaController.jogadas[3]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(3)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(3)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;  ">
+							<h:commandButton value="#{jogoVelhaController.jogadas[4]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(4)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(4)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;  ">
+							<h:commandButton value="#{jogoVelhaController.jogadas[5]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(5)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(5)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+					</h:panelGrid>
+					<h:panelGrid columns="3">
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;  ">
+							<h:commandButton value="#{jogoVelhaController.jogadas[6]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(6)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(6)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;  ">
+							<h:commandButton value="#{jogoVelhaController.jogadas[7]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(7)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(7)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+
+						<h:panelGrid columns="1" style=" width: 60px; height: 60px;  ">
+							<h:commandButton value="#{jogoVelhaController.jogadas[8]}" 
+								disabled="#{jogoVelhaController.isCelulaDesabilitada(8)}"
+								style="width: 100%; height: 100%;">
+								<f:ajax listener="#{jogoVelhaController.jogar(8)}" 
+									event="click" execute="@this" immediate="true" render="panelJogo" /> 
+							</h:commandButton>
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:panelGrid>
 			</h:panelGrid>
-			<h:panelGrid columns="3" border="1">
-				<h:outputLabel value = "" />
-				<h:outputLabel value = "" />
-				<h:outputLabel value = "" />
-			</h:panelGrid>	
-			<h:panelGrid columns="3" border="1" >
-				<h:outputLabel value = "" />
-				<h:outputLabel value = "" />
-				<h:outputLabel value = "" />
-			</h:panelGrid>		
 		</h:panelGrid>
-	</h:panelGrid>
+	</h:form>
 </h:body>
 
 </html>
