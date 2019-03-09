@@ -7,7 +7,7 @@
 	<artifactId>jv</artifactId>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
-	
+
 	<properties>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
@@ -15,26 +15,11 @@
 	</properties>
 
 	<dependencies>
-		<!-- Mojarra (implementacao do JSF) -->
 		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.2.9</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.jboss.weld.se/weld-se-core -->
-		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.2.9.Final</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>compile</scope>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
